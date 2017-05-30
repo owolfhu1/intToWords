@@ -24,7 +24,7 @@ public static void main(String[] args){
 			"twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eightteen ", "nineteen "
 		};
 		String[] over20 = {
-			"", "", "twenty-", "thirty-", "forty-", "fifty-", "sixty-", "seventy-", "eighty-", "ninety-"
+			"", "", "twenty ", "thirty ", "forty ", "fifty ", "sixty ", "seventy ", "eighty ", "ninety "
 		};
 		if (theInt < 20){
 			return under20[theInt];
@@ -32,9 +32,8 @@ public static void main(String[] args){
 			String temp = Integer.toString(theInt);
 			int ten = Integer.parseInt(temp.substring(0,1));
 			int underTen = Integer.parseInt(temp.substring(1,2));
-			String and = "and ";
-			if (underTen == 0) and = "";
-			return over20[ten] + and + under20[underTen];
+			
+			return over20[ten] + under20[underTen];
 		} else if (theInt < 1000){
 			String temp = Integer.toString(theInt);
 			int hundred = Integer.parseInt(temp.substring(0,1));
@@ -57,6 +56,7 @@ public static void main(String[] args){
 			int hundreds = Integer.parseInt(temp.substring(1,4));
 			String kComma = ", ";
 			if (hundreds == 0) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(thousand) + "thousand" + kComma + printTo999(hundreds);
 		} else if (theInt < 100000){
 			String temp = Integer.toString(theInt);
@@ -64,13 +64,15 @@ public static void main(String[] args){
 			int hundreds = Integer.parseInt(temp.substring(2,5));
 			String kComma = ", ";
 			if (hundreds == 0) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(thousand) + "thousand" + kComma + printTo999(hundreds);
 		} else if (theInt < 1000000){
 			String temp = Integer.toString(theInt);
 			int thousand = Integer.parseInt(temp.substring(0,3));
 			int hundreds = Integer.parseInt(temp.substring(3,6));
 			String kComma = ", ";
-			if (hundreds == 0) kComma = " ";
+			if (hundreds == 0 || hundreds <100) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(thousand) + "thousand" + kComma + printTo999(hundreds);
 		} else if (theInt < 10000000){
 			String temp = Integer.toString(theInt);
@@ -83,8 +85,10 @@ public static void main(String[] args){
 			String thousandText = "thousand";
 			if (thousand == 0) {
 			    thousandText = "";
-			    if(hundreds == 0) mComma = " ";
+			    mComma = "";
 			}
+			if (hundreds == 0 || hundreds <100) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(millions) + "million" + mComma + printTo999(thousand) + thousandText + kComma + printTo999(hundreds);
 		} else if (theInt < 100000000){
 			String temp = Integer.toString(theInt);
@@ -97,8 +101,10 @@ public static void main(String[] args){
 			String thousandText = "thousand";
 			if (thousand == 0) {
 			    thousandText = "";
-			    if(hundreds == 0) mComma = " ";
+			    mComma = "";
 			}
+			if (hundreds == 0 || hundreds <100) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(millions) + "million" + mComma + printTo999(thousand) + thousandText + kComma + printTo999(hundreds);
 		} else if (theInt <= 999999999){
 			String temp = Integer.toString(theInt);
@@ -106,13 +112,14 @@ public static void main(String[] args){
 			int thousand = Integer.parseInt(temp.substring(3,6));
 			int hundreds = Integer.parseInt(temp.substring(6,9));
 			String kComma = ", ";
-			if (hundreds == 0) kComma = " ";
 			String mComma = ", ";
 			String thousandText = "thousand";
 			if (thousand == 0) {
 			    thousandText = "";
-			    if(hundreds == 0) mComma = " ";
+			    mComma = "";
 			}
+			if (hundreds == 0 || hundreds <100) kComma = " ";
+			if (hundreds < 100 && hundreds != 0) kComma = " and ";
 			return printTo999(millions) + "million" + mComma + printTo999(thousand) + thousandText + kComma + printTo999(hundreds);
 		}
 		return "";
